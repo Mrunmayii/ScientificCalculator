@@ -1,6 +1,8 @@
 FROM openjdk:17-jdk AS build
 
-RUN apt-get update && apt-get install -y maven && apt-get clean
+RUN apt-get update && apt-get install -y \
+    maven \
+    && apt-get clean
 
 WORKDIR /app
 COPY pom.xml .
