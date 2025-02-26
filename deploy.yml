@@ -1,0 +1,26 @@
+- name: Deploy Calculator Container Using Docker CLI
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Pull the latest Docker image from Docker Hub
+      shell: docker pull mrunmayi12/scientific-calculator
+      register: pull_result
+
+    - name: Display Docker Pull Result
+      debug:
+        var: pull_result
+
+    - name: Stop and remove any existing container
+      shell: |
+        docker ps -q --filter "name=calculator" | xargs -r docker stop
+        docker ps -aq --filter "name=calculator" | xargs -r docker rm
+      ignore_errors: yes
+
+
+    - name: Run the Docker container
+      shell: docker run -it -d --name mrunmayi12/scientific-calculator
+      register: run_result
+
+    - name: Display Container Run Result
+      debug:
+        var: run_result.stdout
