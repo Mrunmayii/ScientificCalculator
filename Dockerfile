@@ -1,16 +1,17 @@
-FROM ubuntu:latest
+FROM openjdk:17-jdk AS build
 
-RUN apt-get update && apt-get install -y \
-    openjdk-17-jdk \
-    maven \
-    && apt-get clean
+RUN apt-get update && apt-get install -y maven && apt-get clean
 
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
 
-COPY . .
+RUN mvn clean install
 
-RUN mvn clean package
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+COPY --from=build /app/target/Scientific-Calculator-1.0-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "target/Scientific-Calculator-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

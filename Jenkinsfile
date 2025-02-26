@@ -26,7 +26,9 @@ pipeline {
             steps {
                 script {
                     sh 'docker --version'
-                    sh "docker build -t ${DOCKER_IMAGE_NAME} ."
+//                     sh "docker build -t ${DOCKER_IMAGE_NAME} ."
+                    sh "docker build --cache-from=${DOCKER_TAG} -t ${DOCKER_IMAGE_NAME} ."
+
                 }
             }
         }
@@ -34,7 +36,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
-                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                        echo "Logging into Docker Hub..."
+                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin || echo "Docker login failed!"
                     '''
                 }
             }
