@@ -49,9 +49,6 @@ pipeline {
         }
         stage('Deploy using Ansible') {
             steps {
-                sh 'ansible-playbook -i inventory.ini deploy.yml'
-            }
-            steps {
                 withCredentials([usernamePassword(credentialsId: 'ansible-cred', usernameVariable: 'ANSIBLE_USER', passwordVariable: 'ANSIBLE_PASS')]) {
                     sh '''
                         export ANSIBLE_BECOME_PASS="$ANSIBLE_PASS"
