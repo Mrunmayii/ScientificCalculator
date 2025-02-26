@@ -23,23 +23,23 @@ public class Main {
                     double num1 = scanner.nextDouble();
                     System.out.println("Result: " + Calculator.squareRoot(num1));
                     break;
-//                case 2:
-//                    System.out.print("Enter an integer: ");
-//                    int num2 = scanner.nextInt();
-//                    System.out.println("Result: " + Calculator.factorial(num2));
-//                    break;
-//                case 3:
-//                    System.out.print("Enter number: ");
-//                    double num3 = scanner.nextDouble();
-//                    System.out.println("Result: " + Calculator.naturalLog(num3));
-//                    break;
-//                case 4:
-//                    System.out.print("Enter base: ");
-//                    double base = scanner.nextDouble();
-//                    System.out.print("Enter exponent: ");
-//                    double exponent = scanner.nextDouble();
-//                    System.out.println("Result: " + Calculator.power(base, exponent));
-//                    break;
+                case 2:
+                    System.out.print("Enter an integer: ");
+                    int num2 = scanner.nextInt();
+                    System.out.println("Result: " + Calculator.factorial(num2));
+                    break;
+                case 3:
+                    System.out.print("Enter number: ");
+                    double num3 = scanner.nextDouble();
+                    System.out.println("Result: " + Calculator.logarithm(num3));
+                    break;
+                case 4:
+                    System.out.print("Enter base: ");
+                    double base = scanner.nextDouble();
+                    System.out.print("Enter exponent: ");
+                    double exponent = scanner.nextDouble();
+                    System.out.println("Result: " + Calculator.power(base, exponent));
+                    break;
                 case 5:
                     System.out.println("Exiting...");
                     break;
