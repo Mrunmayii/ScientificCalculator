@@ -52,18 +52,19 @@ pipeline {
         }
         stage('Clean Up Docker Images') {
             steps {
-                sh "docker rmi ${DOCKER_TAG} || true"  // Remove old images to free space
+                sh "docker rmi ${DOCKER_TAG} || true"
                 sh "docker rmi ${DOCKER_IMAGE_NAME} || true"
             }
         }
         stage('Deploy using Ansible') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'ansible-cred', usernameVariable: 'ANSIBLE_USER', passwordVariable: 'ANSIBLE_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'local-cred', usernameVariable: 'ANSIBLE_USER', passwordVariable: 'ANSIBLE_PASS')]) {
                     sh '''
                         export ANSIBLE_BECOME_PASS="$ANSIBLE_PASS"
                         ansible-playbook -i inventory.ini deploy.yml --extra-vars "ansible_user=$ANSIBLE_USER"
                     '''
                 }
+//                    sh 'ansible-playbook -i inventory.ini deploy.yml'
             }
         }
 

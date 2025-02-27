@@ -1,5 +1,6 @@
 - name: Deploy Calculator Container Using Docker CLI
   hosts: localhost
+  remote_user: mrunmayi
   become: yes
   tasks:
     - name: Pull the latest Docker image from Docker Hub
@@ -18,7 +19,7 @@
 
 
     - name: Run the Docker container
-      shell: docker run -it -d --name mrunmayi12/scientific-calculator
+      shell: docker run -it -d --name mycalculator mrunmayi12/scientific-calculator /bin/bash
       register: run_result
 
     - name: Display Container Run Result
