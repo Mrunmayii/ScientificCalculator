@@ -19,7 +19,7 @@
 
 
     - name: Run the Docker container
-      shell: docker run -it -d --name mycalculator mrunmayi12/scientific-calculator /bin/bash
+      command: docker run -it -d --name mycalculator mrunmayi12/scientific-calculator /bin/bash
       register: run_result
 
     - name: Display Container Run Result
