@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
             DOCKER_IMAGE_NAME = 'scientific_calculator'
-            DOCKER_TAG = 'mrunmayi12/scientific-calculator:latest'
+            DOCKER_TAG = 'mrunmayi12/scientific_calculator:latest'
             GITHUB_REPO_URL = 'https://github.com/Mrunmayii/ScientificCalculator.git'
             DOCKER_CREDENTIALS = 'docker-cred'
      }
@@ -48,6 +48,12 @@ pipeline {
                     sh "docker tag ${DOCKER_IMAGE_NAME} ${DOCKER_TAG}"
                     sh "docker push ${DOCKER_TAG}"
                 }
+            }
+        }
+        stage('Clean Up Docker Images') {
+            steps {
+                sh "docker rmi ${DOCKER_TAG} || true"  // Remove old images to free space
+                sh "docker rmi ${DOCKER_IMAGE_NAME} || true"
             }
         }
         stage('Deploy using Ansible') {
