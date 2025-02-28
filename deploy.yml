@@ -33,8 +33,7 @@
   tasks:
     - name: Pull Docker Image
       docker_image:
-        name: "mrunmayi12/scientific-calculator"
-        source: pull
+        shell : docker pull mrunmayi12/scientific-calculator
       register: docker_pull_result
 
     - name: Display Docker Pull Result
