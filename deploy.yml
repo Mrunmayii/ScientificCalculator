@@ -31,9 +31,8 @@
   remote_user: mrunmayi
   become: false
   tasks:
-    - name: Pull Docker Image
-      docker_image:
-        shell : docker pull mrunmayi12/scientific-calculator
+    - name: Pull Docker Image Using Shell
+      shell: docker pull mrunmayi12/scientific-calculator
       register: docker_pull_result
 
     - name: Display Docker Pull Result
