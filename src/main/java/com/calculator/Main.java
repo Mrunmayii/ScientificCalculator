@@ -6,12 +6,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Calculator calculator = new Calculator();
-
+        System.out.println("\nPress enter to start calculator");
+        scanner.nextLine();
         int choice;
 
         do {
-            System.out.println("\nPress enter to start calculator");
-            scanner.nextLine();
+
             System.out.println("\nScientific Calculator Menu:");
             System.out.println("1. Square Root");
             System.out.println("2. Factorial");
