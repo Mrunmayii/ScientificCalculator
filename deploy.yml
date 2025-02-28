@@ -1,43 +1,17 @@
-#- name: Deploy Calculator Container Using Docker CLI
-#  hosts: localhost
-#  remote_user: mrunmayi
-#  become: yes
-#  tasks:
-#    - name: Pull the latest Docker image from Docker Hub
-#      shell: docker pull mrunmayi12/scientific-calculator
-#      register: pull_result
-#
-#    - name: Display Docker Pull Result
-#      debug:
-#        var: pull_result
-#
-#    - name: Stop and remove any existing container
-#      shell: |
-#        docker ps -q --filter "name=calculator" | xargs -r docker stop
-#        docker ps -aq --filter "name=calculator" | xargs -r docker rm
-#      ignore_errors: yes
-#
-#
-#    - name: Run the Docker container
-#      command: docker run -it -d --name mycalculator mrunmayi12/scientific-calculator /bin/bash
-#      register: run_result
-#
-#    - name: Display Container Run Result
-#      debug:
-#        var: run_result.stdout
-
-- name: Deploy Scientific Calculator
+- name: Deploy Calculator Container Using Docker
   hosts: localhost
   remote_user: mrunmayi
-  become: false
+  become: yes
   tasks:
-    - name: Pull Docker Image Using Shell
-      shell: docker pull mrunmayi12/scientific-calculator
-      register: docker_pull_result
+    - name: Pull the latest Docker image from Docker Hub
+      docker_image:
+        name: "mrunmayi12/scientific-calculator"
+        source: pull
+      register: pull_result
 
     - name: Display Docker Pull Result
       debug:
-        var: docker_pull_result
+        var: pull_result
 
     - name: Start Docker service
       service:
@@ -50,6 +24,10 @@
         docker rm scientific-calculator || true
       ignore_errors: yes
 
-    - name: Run Docker container
-      shell: |
-        docker run -it -d --name scientific-calculator -p 5000:8080 mrunmayi12/scientific-calculator:latest
+    - name: Run the Docker container
+      command: docker run -it -d --name calculator -p 5000:8080 mrunmayi12/scientific-calculator:latest
+      register: run_result
+
+    - name: Display Container Run Result
+      debug:
+        var: run_result.stdout
