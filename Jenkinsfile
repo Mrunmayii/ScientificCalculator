@@ -27,7 +27,7 @@ pipeline {
                 script {
                     sh 'docker --version'
 //                     sh "docker build -t ${DOCKER_IMAGE_NAME} ."
-                    sh "docker build --cache-from=${DOCKER_TAG} -t ${DOCKER_IMAGE_NAME} ."
+                    sh "docker build --no-cache -t ${DOCKER_IMAGE_NAME} ."
 
                 }
             }
