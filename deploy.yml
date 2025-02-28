@@ -1,12 +1,10 @@
 - name: Deploy Calculator Container Using Docker
   hosts: localhost
   remote_user: mrunmayi
-  become: yes
+  become: false
   tasks:
     - name: Pull the latest Docker image from Docker Hub
-      docker_image:
-        name: "mrunmayi12/scientific-calculator"
-        source: pull
+      shell: docker pull mrunmayi12/scientific-calculator
       register: pull_result
 
     - name: Display Docker Pull Result
