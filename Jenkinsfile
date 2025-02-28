@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-            DOCKER_IMAGE_NAME = 'scientific_calculator'
-            DOCKER_TAG = 'mrunmayi12/scientific_calculator:latest'
+            DOCKER_IMAGE_NAME = 'scientific-calculator'
+            DOCKER_TAG = 'mrunmayi12/scientific-calculator:latest'
             GITHUB_REPO_URL = 'https://github.com/Mrunmayii/ScientificCalculator.git'
             DOCKER_CREDENTIALS = 'docker-cred'
      }
