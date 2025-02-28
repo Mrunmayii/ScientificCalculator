@@ -10,7 +10,7 @@ public class Main {
         scanner.nextLine();
         int choice;
 
-        do {
+        while (true) {
 
             System.out.println("\nScientific Calculator Menu:");
             System.out.println("1. Square Root");
@@ -46,11 +46,11 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Exiting...");
-                    break;
+                    return;
                 default:
                     System.out.println("Invalid choice. Please select a valid option.");
             }
-        } while (choice != 5);
+        }
 
 //        scanner.close();
     }
