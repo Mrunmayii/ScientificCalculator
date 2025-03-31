@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 public class CalculatorTest {
     Calculator calculator = new Calculator();
 
+
+
+
     @Test
     public void testSquareRoot() {
         assertEquals(5.0, calculator.squareRoot(25), 0.0001);
